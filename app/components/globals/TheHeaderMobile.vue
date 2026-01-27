@@ -4,23 +4,39 @@
       <NuxtLink :to="localePath('/')" @click="closeMenu">
         <UILogosLogo />
       </NuxtLink>
-      <button class="menu-toggle" @click="displayMenu">
-        <span v-if="!openMenu">☰</span>
-        <span v-else>✕</span>
-      </button>
+      <UIIconsIconMenu :icon-style="openMenu" @click="displayMenu" />
     </div>
 
     <div class="menu" :class="{ open: openMenu }">
-      <NuxtLink
-        v-for="(link, index) in navLinks"
+      <!-- dropdown links layout -->
+      <GlobalsDrawerMenu
+        v-for="(dropdown, index) in navData?.dropdowns"
         :key="index"
+        :title="dropdown.text"
+      >
+        <NuxtLink
+          v-for="(link, indexText) in dropdown.links"
+          :key="indexText"
+          class="menu-sublink"
+          :to="correctUrl(link.link.cached_url)"
+          @click="closeMenu"
+        >
+          {{ link.text }}
+        </NuxtLink>
+      </GlobalsDrawerMenu>
+
+      <!-- single links layout -->
+      <NuxtLink
+        v-for="(link, index) in navData?.links"
+        :key="index + '-link'"
         class="menu-link"
-        :to="link.to"
+        :to="correctUrl(link.link.cached_url)"
         @click="closeMenu"
       >
         {{ link.text }}
       </NuxtLink>
 
+      <!-- lang switcher -->
       <NuxtLink
         class="btn-lang"
         :to="switchLocalePath(switchLocale)"
@@ -33,28 +49,29 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
-const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
+const { locale } = useI18n();
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+const { navData, correctUrl } = useNavigation();
 
-const openMenu = ref(false)
+const openMenu = ref(false);
 
-const switchLocale = computed(() => (locale.value === 'fr' ? 'en' : 'fr'))
-
-// Placeholder nav links - will be replaced with Storyblok data later
-const navLinks = [
-  { to: '/', text: 'Accueil' },
-  { to: '/programmation', text: 'Programmation' },
-  { to: '/festival', text: 'Festival' },
-]
+const switchLocale = computed(() => (locale.value === "fr" ? "en" : "fr"));
 
 function displayMenu() {
-  openMenu.value = !openMenu.value
+  openMenu.value = !openMenu.value;
 }
 
 function closeMenu() {
-  openMenu.value = false
+  openMenu.value = false;
 }
+
+// Lock body scroll when menu is open
+useHead({
+  bodyAttrs: {
+    class: computed(() => (openMenu.value ? "body-fixed" : "")),
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -81,14 +98,6 @@ function closeMenu() {
     position: relative;
     width: 100%;
     z-index: 10;
-  }
-
-  & .menu-toggle {
-    background: transparent;
-    border: none;
-    color: $white;
-    cursor: pointer;
-    font-size: 2.4rem;
   }
 
   & .menu {
@@ -126,5 +135,14 @@ function closeMenu() {
     text-transform: uppercase;
     width: 100%;
   }
+}
+
+.menu-sublink {
+  color: $white;
+  font-size: 1.4rem;
+  font-weight: normal;
+  padding: 1.5rem 4rem;
+  text-decoration: none;
+  display: block;
 }
 </style>

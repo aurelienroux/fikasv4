@@ -1,5 +1,9 @@
 <template>
-  <div class="menu-link" @mouseenter="showLinks = true" @mouseleave="showLinks = false">
+  <div
+    class="menu-link"
+    @mouseenter="showLinks = true"
+    @mouseleave="showLinks = false"
+  >
     {{ title }}
     <UIIconsIconMenuDrop />
     <ul class="menu-dropdown" :class="{ show: showLinks }">
@@ -10,10 +14,10 @@
 
 <script setup lang="ts">
 defineProps<{
-  title: string
-}>()
+  title: string;
+}>();
 
-const showLinks = ref(false)
+const showLinks = ref(false);
 </script>
 
 <style lang="scss" scoped>

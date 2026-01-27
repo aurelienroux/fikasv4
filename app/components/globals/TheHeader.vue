@@ -6,16 +6,43 @@
       </NuxtLink>
 
       <div class="menu">
-        <NuxtLink
-          v-for="(link, index) in navLinks"
+        <!-- dropdown links layout -->
+        <GlobalsDropDown
+          v-for="(dropdown, index) in navData?.dropdowns"
           :key="index"
+          :title="dropdown.text"
+        >
+          <li v-for="(link, indexText) in dropdown.links" :key="indexText">
+            <a
+              v-if="link.link.linktype === 'url'"
+              class="menu-sublink"
+              :href="link.link.cached_url"
+              target="_blank"
+            >
+              {{ link.text }}
+            </a>
+            <NuxtLink
+              v-else
+              class="menu-sublink"
+              :to="correctUrl(link.link.cached_url)"
+            >
+              {{ link.text }}
+            </NuxtLink>
+          </li>
+        </GlobalsDropDown>
+
+        <!-- single links layout -->
+        <NuxtLink
+          v-for="(link, index) in navData?.links"
+          :key="index + '-link'"
           class="menu-link"
-          :to="link.to"
+          :to="correctUrl(link.link.cached_url)"
         >
           {{ link.text }}
         </NuxtLink>
       </div>
 
+      <!-- lang switcher -->
       <NuxtLink class="btn-lang" :to="switchLocalePath(switchLocale)">
         {{ switchLocale }}
       </NuxtLink>
@@ -24,35 +51,29 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
-const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
+const { locale } = useI18n();
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+const { navData, correctUrl } = useNavigation();
 
-const windowTop = ref(true)
+const windowTop = ref(true);
 
-const switchLocale = computed(() => (locale.value === 'fr' ? 'en' : 'fr'))
-
-// Placeholder nav links - will be replaced with Storyblok data later
-const navLinks = [
-  { to: '/', text: 'Accueil' },
-  { to: '/programmation', text: 'Programmation' },
-  { to: '/festival', text: 'Festival' },
-]
+const switchLocale = computed(() => (locale.value === "fr" ? "en" : "fr"));
 
 function closeMenu() {
   // placeholder
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
+  window.addEventListener("scroll", handleScroll);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener("scroll", handleScroll);
+});
 
 function handleScroll() {
-  windowTop.value = window.scrollY === 0
+  windowTop.value = window.scrollY === 0;
 }
 </script>
 
@@ -114,6 +135,32 @@ function handleScroll() {
     &-active {
       border-bottom: 2px solid $white;
     }
+
+    &-sublink {
+      color: $white;
+      display: block;
+      font-size: 1.4rem;
+      font-weight: normal;
+      padding: 1rem 2rem;
+      position: relative;
+      text-decoration: none;
+
+      &::after {
+        background-color: $white;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 0;
+        position: absolute;
+        width: 20px;
+      }
+
+      &:hover {
+        color: $charcoal-grey;
+        background: $white;
+      }
+    }
   }
 
   & .btn-lang {
@@ -126,6 +173,11 @@ function handleScroll() {
     right: -2rem;
     text-decoration: none;
     text-transform: uppercase;
+  }
+
+  .menu-sublink.router-link-exact-active {
+    background: $white;
+    color: $charcoal-grey;
   }
 }
 </style>

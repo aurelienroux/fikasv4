@@ -12,10 +12,10 @@
 
 <script setup lang="ts">
 defineProps<{
-  title?: string
-}>()
+  title?: string;
+}>();
 
-const open = ref(false)
+const open = ref(false);
 </script>
 
 <style lang="scss" scoped>
