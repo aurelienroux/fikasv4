@@ -1,0 +1,44 @@
+@use '~/assets/scss/_variables.scss' as *;
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-text,
+.input-email,
+select,
+textarea {
+  background-color: transparent;
+  border-radius: 1rem;
+  color: $charcoal-grey;
+  font-family: $font-primary;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.input-text,
+.input-email,
+select {
+  height: 6rem;
+}
+
+.input-submit {
+  background-color: $perrywinkle;
+  border-radius: 3rem;
+  border: solid 0.2rem $perrywinkle;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $font-secondary;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 2rem 3rem;
+  transition: 0.3s;
+
+  &:hover {
+    background: transparent;
+    color: $perrywinkle;
+  }
+}
