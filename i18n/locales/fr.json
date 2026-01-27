@@ -1,0 +1,41 @@
+{
+  "archives": {
+    "credits": "crédits",
+    "photos": "photos",
+    "videos": "vidéos"
+  },
+  "contact": {
+    "volunteer": "Bénévolat",
+    "email": "Courriel*",
+    "first": "Prénom",
+    "general": "Questions Générales",
+    "last": "Nom*",
+    "partner": "Partenariat",
+    "selectSubject": "Choisissez un sujet",
+    "submit": "Envoyer"
+  },
+  "cookies": {
+    "accept": "J'accepte",
+    "decline": "Je refuse"
+  },
+  "edition": {
+    "archives": "Voir les archives"
+  },
+  "footer": {
+    "copyright": "Tous droits réservés"
+  },
+  "programmation": {
+    "tickets": "Billets",
+    "facebookEvent": "Événement Facebook",
+    "more": "en savoir plus",
+    "officialsite": "Site officiel",
+    "share": "Partager"
+  },
+  "newsletter": {
+    "dontmiss": "Ne manquez rien",
+    "newsletter": "infolettre",
+    "register": "M'inscrire",
+    "subscribe": "Inscrivez-vous à notre infolettre",
+    "subscription": "S'inscrire à l'infolettre"
+  }
+}

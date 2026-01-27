@@ -1,0 +1,41 @@
+{
+  "archives": {
+    "credits": "credits",
+    "photos": "pictures",
+    "videos": "videos"
+  },
+  "contact": {
+    "volunteer": "Volunteer",
+    "email": "Email*",
+    "first": "First name",
+    "general": "General questions",
+    "last": "Last name*",
+    "partner": "Partnership",
+    "selectSubject": "Select a subject",
+    "submit": "Submit"
+  },
+  "cookies": {
+    "accept": "I accept",
+    "decline": "I decline"
+  },
+  "edition": {
+    "archives": "See archives"
+  },
+  "footer": {
+    "copyright": "All rights reserved"
+  },
+  "programmation": {
+    "tickets": "Tickets",
+    "facebookEvent": "Facebook Event",
+    "more": "more details",
+    "officialsite": "Official site",
+    "share": "Share"
+  },
+  "newsletter": {
+    "dontmiss": "Don't miss anything",
+    "newsletter": "newsletter",
+    "register": "Register",
+    "subscribe": "Subscribe to our newsletter",
+    "subscription": "Subscribe to newsletter"
+  }
+}

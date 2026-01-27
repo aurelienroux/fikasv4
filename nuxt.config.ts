@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   modules: [
-    "@nuxtjs/i18n",
     "@nuxtjs/google-fonts",
     [
       "@storyblok/nuxt",
@@ -11,6 +10,7 @@ export default defineNuxtConfig({
         accessToken: process.env.STORYBLOK_DELIVERY_API_TOKEN,
       },
     ],
+    "@nuxtjs/i18n",
   ],
   css: ["~/assets/scss/index.scss"],
   vite: {
@@ -34,5 +34,14 @@ export default defineNuxtConfig({
   },
   storyblok: {
     accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
+  },
+  i18n: {
+    locales: [
+      { code: "fr", iso: "fr-FR", file: "fr.json" },
+      { code: "en", iso: "en-US", file: "en.json" },
+    ],
+    defaultLocale: "fr",
+    strategy: "prefix_except_default",
+    langDir: "locales",
   },
 });
