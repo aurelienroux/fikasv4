@@ -99,7 +99,6 @@ app/
     │   └── DrawerMenu.vue           # Drawer menu
     ├── archives/
     │   ├── Lightbox.vue             # Image lightbox modal
-    │   ├── ArchiveSelector.vue      # Year selector for archives
     │   └── ArchiveYear.vue          # Archive content (photos/videos/prog)
     └── UI/
         ├── Buttons/
