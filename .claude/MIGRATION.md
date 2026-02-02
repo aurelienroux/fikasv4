@@ -88,7 +88,8 @@ app/
 │   ├── Team.vue                     # Team section container (uses Member)
 │   ├── Avatar.vue                   # Circular avatar card
 │   ├── Member.vue                   # Team member with rich text name
-│   └── Pinkblock.vue                # Pink CTA block with SVG pattern
+│   ├── Pinkblock.vue                # Pink CTA block with SVG pattern
+│   └── ArchiveSelector.vue          # Year selector for archives (v-editable)
 └── components/
     ├── globals/
     │   ├── TheHeader.vue            # Desktop header (tablet-landscape+)

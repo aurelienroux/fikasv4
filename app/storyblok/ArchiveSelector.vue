@@ -1,5 +1,5 @@
 <template>
-  <div class="archive">
+  <div v-editable="blok" class="archive">
     <div class="archive__selector">
       <h2 class="title">
         {{ selectedYear }}
