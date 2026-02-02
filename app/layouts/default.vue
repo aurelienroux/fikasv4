@@ -4,6 +4,7 @@
     <GlobalsTheHeader />
     <slot />
     <GlobalsTheFooter />
+    <GlobalsTheNewsletterForm />
   </div>
 </template>
 
