@@ -1,6 +1,8 @@
 <template>
   <div class="headline" v-editable="blok">
-    <p class="headline__paragraph" v-html="richtext"></p>
+    <div class="headline__paragraph">
+      <StoryblokRichText v-if="blok.text" :doc="blok.text" />
+    </div>
     <NuxtLink
       v-if="blok.show_button && linkUrl"
       class="headline__button"
@@ -20,11 +22,6 @@ const props = defineProps<{
     button_text?: string
   }
 }>()
-
-const richtext = computed(() => {
-  if (!props.blok.text) return ''
-  return renderRichText(props.blok.text)
-})
 
 const linkUrl = computed(() => {
   const url = props.blok.link?.cached_url
@@ -49,6 +46,10 @@ const linkUrl = computed(() => {
     max-width: 120rem;
     padding: 2rem;
     position: relative;
+
+    :deep(p) {
+      margin: 0;
+    }
   }
 
   &__button {
