@@ -78,7 +78,17 @@ app/
 │   ├── Paragraph.vue                # Rich text content
 │   ├── Cookies.vue                  # Cookie consent banner
 │   ├── Donations.vue                # Donations grid container
-│   └── Donation.vue                 # Individual donation card
+│   ├── Donation.vue                 # Individual donation card
+│   ├── VideoPlayback.vue            # YouTube video embed with CTA
+│   ├── History.vue                  # History section container
+│   ├── HistoryLeft.vue              # History item (image left)
+│   ├── HistoryRight.vue             # History item (image right)
+│   ├── Greenblock.vue               # Green background content block
+│   ├── Admins.vue                   # Admin section container (uses Avatar)
+│   ├── Team.vue                     # Team section container (uses Member)
+│   ├── Avatar.vue                   # Circular avatar card
+│   ├── Member.vue                   # Team member with rich text name
+│   └── Pinkblock.vue                # Pink CTA block with SVG pattern
 └── components/
     ├── globals/
     │   ├── TheHeader.vue            # Desktop header (tablet-landscape+)
