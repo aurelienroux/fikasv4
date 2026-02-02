@@ -44,7 +44,7 @@
       >
       </iframe>
     </div>
-    <div v-if="showProg" class="prog" v-html="richtext"></div>
+    <StoryblokRichText v-if="showProg && data.prog" :doc="data.prog" class="prog" />
     <Transition name="fade">
       <ArchivesLightbox
         v-if="showLightbox"
@@ -56,8 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import { renderRichText } from '@storyblok/vue'
-
 const { t } = useI18n()
 
 interface Photo {
@@ -90,11 +88,6 @@ const showVideos = ref(false)
 const showProg = ref(false)
 const showLightbox = ref(false)
 const selectedPicture = ref<Photo | null>(null)
-
-const richtext = computed(() => {
-  // @ts-ignore - Storyblok rich text type
-  return props.data.prog ? renderRichText(props.data.prog) : ''
-})
 
 const switchMedia = (media: 'photos' | 'videos' | 'prog') => {
   showPhotos.value = media === 'photos'

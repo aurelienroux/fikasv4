@@ -163,17 +163,32 @@ const { story } = await useAsyncStoryblok(slug, {
 
 ### Rich Text Rendering
 
-```typescript
-import { renderRichText } from '@storyblok/vue'
-
-const renderedContent = computed(() => renderRichText(props.blok.content))
-```
+**Use `<StoryblokRichText>` component** (preferred over `renderRichText()`):
 
 ```vue
 <template>
-  <div v-html="renderedContent"></div>
+  <StoryblokRichText v-if="blok.text" :doc="blok.text" />
 </template>
 ```
+
+#### Why StoryblokRichText vs renderRichText?
+
+| Feature | `renderRichText()` | `StoryblokRichText` |
+|---------|-------------------|---------------------|
+| Output | HTML string | Vue component |
+| Rendering | Requires `v-html` | Direct component |
+| Custom components | Needs runtime workarounds | Native `resolvers` prop |
+| Security | XSS risk with `v-html` | Vue-safe rendering |
+
+**Avoid** the legacy `renderRichText()` approach:
+```typescript
+// ❌ Legacy - requires v-html, XSS risk, not Vue-native
+import { renderRichText } from '@storyblok/vue'
+const content = computed(() => renderRichText(props.blok.content))
+// <div v-html="content"></div>
+```
+
+**Use** `StoryblokRichText` for all rich text fields - it's the modern, Vue-native approach that doesn't require `v-html` and supports custom resolvers.
 
 ## Styling
 
