@@ -89,7 +89,9 @@ app/
 │   ├── Avatar.vue                   # Circular avatar card
 │   ├── Member.vue                   # Team member with rich text name
 │   ├── Pinkblock.vue                # Pink CTA block with SVG pattern
-│   └── ArchiveSelector.vue          # Year selector for archives (v-editable)
+│   ├── ArchiveSelector.vue          # Year selector for archives (v-editable)
+│   ├── ProgEvents.vue               # Events list container (fetches from Storyblok)
+│   └── ProgEvent.vue                # Individual event card with date/time/location
 └── components/
     ├── globals/
     │   ├── TheHeader.vue            # Desktop header (tablet-landscape+)
