@@ -19,7 +19,7 @@
     <NuxtLink
       v-if="blok.show_button"
       class="button"
-      :to="`/${blok.link?.cached_url || ''}`"
+      :to="correctUrl(blok.link?.cached_url || '')"
     >
       {{ blok.button_text }}
     </NuxtLink>
@@ -27,20 +27,22 @@
 </template>
 
 <script setup lang="ts">
+const { correctUrl } = useNavigation();
+
 const props = defineProps<{
   blok: {
-    title?: string
-    video_id?: string
-    show_button?: boolean
-    button_text?: string
-    link?: { cached_url?: string }
-  }
-}>()
+    title?: string;
+    video_id?: string;
+    show_button?: boolean;
+    button_text?: string;
+    link?: { cached_url?: string };
+  };
+}>();
 
 const videoLink = computed(
   () =>
-    `https://www.youtube.com/embed/${props.blok.video_id}?showinfo=0&autoplay=0&mute=0&modestbranding=1&controls=1&loop=0`
-)
+    `https://www.youtube.com/embed/${props.blok.video_id}?showinfo=0&autoplay=0&mute=0&modestbranding=1&controls=1&loop=0`,
+);
 </script>
 
 <style lang="scss" scoped>
