@@ -7,15 +7,15 @@ Tracking what's done and what's left to migrate.
 | Legacy Vuex Module | Purpose | New Composable | Status |
 |--------------------|---------|----------------|--------|
 | `store/index.js` | Navigation data (FR/EN) | `useNavigation()` | ✅ Done |
-| `store/menu.js` | Menu state, newsletter toggle | `useMenu()` | TODO |
+| `store/menu.js` | Menu state, newsletter toggle | `useMenu()` | ✅ Done |
 | `store/cookiesConsent.js` | Cookie preferences | `useCookiesConsent()` | ✅ Done |
 
 ## Dependencies Migration
 
 | Feature | Legacy | Nuxt 4 Equivalent | Status |
 |---------|--------|-------------------|--------|
-| HTTP | Axios | `$fetch` (built-in) | Ready |
-| State | Vuex | `useState` composables | In Progress |
+| HTTP | Axios | `$fetch` (built-in) | ✅ Done |
+| State | Vuex | `useState` composables | ✅ Done |
 | CMS | @nuxtjs/storyblok | @storyblok/nuxt | ✅ Installed |
 | i18n | nuxt-i18n | @nuxtjs/i18n v9+ | ✅ Installed |
 | CSS | SCSS | SCSS (sass package) | ✅ Installed |
@@ -66,7 +66,8 @@ app/
 │   └── default.vue                  # Main layout with header/footer
 ├── composables/
 │   ├── useCookiesConsent.ts         # Cookie consent state management
-│   └── useNavigation.ts             # Navigation data from Storyblok
+│   ├── useNavigation.ts             # Navigation data from Storyblok
+│   └── useMenu.ts                   # Menu/drawer state management
 ├── storyblok/
 │   ├── Page.vue                     # Container for dynamic components
 │   ├── Layout.vue                   # Layout with decorative elements
@@ -91,17 +92,26 @@ app/
 │   ├── Pinkblock.vue                # Pink CTA block with SVG pattern
 │   ├── ArchiveSelector.vue          # Year selector for archives (v-editable)
 │   ├── ProgEvents.vue               # Events list container (fetches from Storyblok)
-│   └── ProgEvent.vue                # Individual event card with date/time/location
+│   ├── ProgEvent.vue                # Individual event card with date/time/location
+│   ├── OffEvents.vue                # Off Fikas events container
+│   ├── OffEvent.vue                 # Individual off event card
+│   ├── Partners.vue                 # Partners section container
+│   ├── PartnerImage.vue             # Partner with image/logo
+│   ├── PartnerText.vue              # Partner text-only entry
+│   └── contact-form.vue             # Contact form with Netlify integration
 └── components/
     ├── globals/
     │   ├── TheHeader.vue            # Desktop header (tablet-landscape+)
     │   ├── TheHeaderMobile.vue      # Mobile header (< tablet-landscape)
     │   ├── TheFooter.vue            # Footer
     │   ├── DropDown.vue             # Dropdown menu
-    │   └── DrawerMenu.vue           # Drawer menu
+    │   ├── DrawerMenu.vue           # Drawer menu
+    │   └── TheNewsletterForm.vue    # Newsletter signup form (Mailchimp)
     ├── archives/
     │   ├── Lightbox.vue             # Image lightbox modal
     │   └── ArchiveYear.vue          # Archive content (photos/videos/prog)
+    ├── contact/
+    │   └── FormFields.vue           # Reusable form field components
     ├── progEvents/
     │   ├── HeroEvent.vue            # Event hero with background image
     │   ├── Bands.vue                # Band list with videos/social links
@@ -154,7 +164,6 @@ app/
 
 ## Next Steps to Continue Migration
 
-1. **Fix Facebook Pixel**: Investigate and fix `nuxt-meta-pixel` implementation issues
-2. **Composables**: Create `useMenu()` for menu state
-3. **More Storyblok components**: As needed for additional content types
-4. **Testing**: Set up Vitest for unit tests
+1. **Analytics**: Implement `useAnalytics()` composable for GTM/Pixel tracking
+2. **Fix Facebook Pixel**: Investigate and fix `nuxt-meta-pixel` implementation issues
+3. **Testing**: Set up Vitest for unit tests

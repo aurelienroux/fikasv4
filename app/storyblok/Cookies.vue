@@ -33,7 +33,7 @@ const { t } = useI18n()
 const { displayCookiesConsentFromStore, hideCookiesConsent, consentAndCreateCookie, hasCookieConsent } = useCookiesConsent()
 
 const showBanner = computed(() => {
-  return displayCookiesConsentFromStore.value && !hasCookieConsent()
+  return displayCookiesConsentFromStore.value && !hasCookieConsent.value
 })
 </script>
 
