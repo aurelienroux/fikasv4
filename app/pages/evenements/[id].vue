@@ -21,14 +21,12 @@
 const route = useRoute();
 const { locale } = useI18n();
 
-const slug =
-  locale.value === "en"
-    ? `en/evenements/${route.params.id}`
-    : `evenements/${route.params.id}`;
+const language = locale.value === "fr" ? undefined : locale.value;
 
-const { story } = await useAsyncStoryblok(slug, {
+const { story } = await useAsyncStoryblok(`evenements/${route.params.id}`, {
   api: {
     version: "draft",
+    language,
   },
   bridge: {},
 });
