@@ -7,11 +7,10 @@
 <script setup lang="ts">
 const { locale } = useI18n();
 
-// French (default): "prog2025" | English: "en/prog2025"
-const slug = locale.value === "en" ? "en/prog2025" : "prog2025";
+const language = locale.value === "fr" ? undefined : locale.value;
 
-const { story } = await useAsyncStoryblok(slug, {
-  api: { version: "draft" },
+const { story } = await useAsyncStoryblok("prog2025", {
+  api: { version: "draft", language },
   bridge: {},
 });
 </script>

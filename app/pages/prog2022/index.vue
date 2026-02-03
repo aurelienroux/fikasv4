@@ -8,22 +8,22 @@
 const { locale } = useI18n();
 const storyblokApi = useStoryblokApi();
 
-// French (default): "prog2022" | English: "en/prog2022"
-const slug = locale.value === "en" ? "en/prog2022" : "prog2022";
-const eventsPrefix = locale.value === "en" ? "en/evenements" : "evenements";
+const language = locale.value === "fr" ? undefined : locale.value;
 
 // Fetch story and events in parallel
 const [storyResponse, eventsResponse] = await Promise.all([
-  useAsyncStoryblok(slug, {
+  useAsyncStoryblok("prog2022", {
     api: {
       version: "draft",
+      language,
     },
     bridge: {},
   }),
   storyblokApi.get("cdn/stories", {
     version: "published",
+    language,
     per_page: 100,
-    starts_with: eventsPrefix,
+    starts_with: "evenements",
     sort_by: "content.date:asc,content.time:asc",
   }),
 ]);
