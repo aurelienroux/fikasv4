@@ -4,6 +4,7 @@ export const useNavigation = () => {
   // Shared state
   const navDataFR = useState<any>('nav-data-fr', () => null)
   const navDataEN = useState<any>('nav-data-en', () => null)
+  const currentMenu = useState<string>('current-menu', () => 'home')
 
   // Reactive based on current locale
   const navData = computed(() => {
@@ -16,5 +17,13 @@ export const useNavigation = () => {
     return url.startsWith('/') ? url : `/${url}`
   }
 
-  return { navData, navDataFR, navDataEN, correctUrl }
+  const changeCurrentMenu = (menu: string) => {
+    currentMenu.value = menu
+  }
+
+  const resetMenu = () => {
+    currentMenu.value = 'home'
+  }
+
+  return { navData, navDataFR, navDataEN, correctUrl, currentMenu, changeCurrentMenu, resetMenu }
 }

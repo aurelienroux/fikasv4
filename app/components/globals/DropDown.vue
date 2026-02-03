@@ -34,6 +34,7 @@ const showLinks = ref(false);
 
 .menu-dropdown {
   background-color: $aqua-blue;
+  display: none;
   left: 0;
   list-style-type: none;
   padding: 0;
@@ -41,12 +42,8 @@ const showLinks = ref(false);
   top: 100%;
   width: 100%;
 
-  li {
-    display: none;
-  }
-
-  &.show li {
-    display: initial;
+  &.show {
+    display: block;
   }
 }
 </style>

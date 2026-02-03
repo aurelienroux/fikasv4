@@ -11,6 +11,7 @@
           v-for="(dropdown, index) in navData?.dropdowns"
           :key="index"
           :title="dropdown.text"
+          :class="{ 'menu-active': currentMenu === dropdown.menuDecoration }"
         >
           <li v-for="(link, indexText) in dropdown.links" :key="indexText">
             <a
@@ -25,6 +26,7 @@
               v-else
               class="menu-sublink"
               :to="correctUrl(link.link.cached_url)"
+              @click="changeCurrentMenu(link.menuDecoration)"
             >
               {{ link.text }}
             </NuxtLink>
@@ -36,7 +38,9 @@
           v-for="(link, index) in navData?.links"
           :key="index + '-link'"
           class="menu-link"
+          :class="{ 'menu-active': currentMenu === link.menuDecoration }"
           :to="correctUrl(link.link.cached_url)"
+          @click="changeCurrentMenu(link.menuDecoration)"
         >
           {{ link.text }}
         </NuxtLink>
@@ -54,14 +58,14 @@
 const { locale } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
-const { navData, correctUrl } = useNavigation();
+const { navData, correctUrl, currentMenu, changeCurrentMenu, resetMenu } = useNavigation();
 
 const windowTop = ref(true);
 
 const switchLocale = computed(() => (locale.value === "fr" ? "en" : "fr"));
 
 function closeMenu() {
-  // placeholder
+  resetMenu();
 }
 
 onMounted(() => {
