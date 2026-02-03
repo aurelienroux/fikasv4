@@ -21,7 +21,7 @@ Tracking what's done and what's left to migrate.
 | CSS | SCSS | SCSS (sass package) | ✅ Installed |
 | Fonts | - | @nuxtjs/google-fonts | ✅ Installed |
 | FB Pixel | nuxt-facebook-pixel-module | nuxt-meta-pixel | ⚠️ Needs fix |
-| Icons | FontAwesome | @fortawesome/vue-fontawesome | TODO |
+| Icons | FontAwesome | Custom SVG components | ✅ Done (no FA dependency) |
 | Tests | Jest | Vitest (recommended) | TODO |
 
 ## Completed Setup
@@ -102,6 +102,10 @@ app/
     ├── archives/
     │   ├── Lightbox.vue             # Image lightbox modal
     │   └── ArchiveYear.vue          # Archive content (photos/videos/prog)
+    ├── progEvents/
+    │   ├── HeroEvent.vue            # Event hero with background image
+    │   ├── Bands.vue                # Band list with videos/social links
+    │   └── Details.vue              # Event sidebar (date, time, tickets)
     └── UI/
         ├── Buttons/
         │   ├── Btn.vue              # General purpose button/link
@@ -121,7 +125,11 @@ app/
             ├── IconDrawer.vue       # +/- toggle (small, purple)
             ├── IconDrawerMap.vue    # +/- toggle (large, white)
             ├── IconNext.vue         # Next arrow
-            └── IconPrev.vue         # Previous arrow
+            ├── IconPrev.vue         # Previous arrow
+            ├── IconSpotify.vue      # Spotify logo (social)
+            ├── IconFacebook.vue     # Facebook logo (social)
+            ├── IconInstagram.vue    # Instagram logo (social)
+            └── IconTwitter.vue      # Twitter/X logo (social)
 ```
 
 ## Migrated Pages
@@ -142,6 +150,7 @@ app/
 | Prog 2022 | - | `app/pages/prog2022/index.vue` | ✅ Done |
 | Prog 2024 | - | `app/pages/prog2024/index.vue` | ✅ Done |
 | Prog 2025 | - | `app/pages/prog2025/index.vue` | ✅ Done |
+| Event Detail | `legacy/pages/evenements/_id.vue` | `app/pages/evenements/[id].vue` | ✅ Done |
 
 ## Next Steps to Continue Migration
 
