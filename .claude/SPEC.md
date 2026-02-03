@@ -136,21 +136,21 @@ The site is content-driven via Storyblok.
 
 ### Storyblok Data Fetching Pattern (with i18n)
 
+Use the `language` parameter in API options—**not** slug prefixing:
+
 ```vue
 <script setup lang="ts">
 const { locale } = useI18n()
 
-// French (default): "home" | English: "en/home"
-const slug = locale.value === 'en' ? 'en/home' : 'home'
+// Pass undefined for French (default), locale string for others
+const language = locale.value === "fr" ? undefined : locale.value
 
-const { story } = await useAsyncStoryblok(slug, {
+const { story } = await useAsyncStoryblok("home", {
   api: {
     version: "draft",
+    language,  // Storyblok returns translated content
   },
-  bridge: {
-    // Enables live preview in Storyblok Visual Editor
-    // Replaces legacy mounted() $storybridge.on() code
-  },
+  bridge: {},
 });
 </script>
 
@@ -158,6 +158,23 @@ const { story } = await useAsyncStoryblok(slug, {
   <StoryblokComponent v-if="story" :blok="story.content" />
 </template>
 ```
+
+For fetching multiple stories:
+
+```ts
+const storyblokApi = useStoryblokApi()
+const response = await storyblokApi.get("cdn/stories", {
+  version: "draft",
+  language,
+  starts_with: "evenements",
+})
+```
+
+**Key points:**
+- ✅ Use `language` parameter in API options
+- ❌ Don't prefix slugs with `en/` (old approach)
+- Pass `undefined` for French (default language)
+- Same slug works for all locales
 
 **Important**: `useAsyncStoryblok` returns `{ story }` - must destructure it.
 

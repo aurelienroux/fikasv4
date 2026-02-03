@@ -162,6 +162,14 @@ app/
 | Prog 2025 | - | `app/pages/prog2025/index.vue` | ✅ Done |
 | Event Detail | `legacy/pages/evenements/_id.vue` | `app/pages/evenements/[id].vue` | ✅ Done |
 
+## Recent Fixes (Feb 2026)
+
+- **Cookie consent**: Fixed server-side hydration bug with `useCookie()`
+- **Header mobile**: Fixed menu display and interactions
+- **Footer newsletter**: Fixed button to properly open newsletter overlay
+- **VideoPlayback**: Fixed CTA link URL for English locale
+- **Event detail page**: Fixed EN translation (now uses `language` param - see SPEC.md)
+
 ## Next Steps to Continue Migration
 
 1. **Analytics**: Implement `useAnalytics()` composable for GTM/Pixel tracking
