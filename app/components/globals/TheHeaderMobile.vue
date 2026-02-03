@@ -44,15 +44,30 @@
       >
         {{ switchLocale }}
       </NuxtLink>
+
+      <!-- newsletter -->
+      <div class="news">
+        <UIButtonsBtn btn-style="button--full" @click="openNewsletter">
+          {{ t("newsletter.subscription") }}
+        </UIButtonsBtn>
+      </div>
+
+      <!-- social -->
+      <div class="social">
+        <UIButtonsBtnFacebook />
+        <UIButtonsBtnInsta />
+        <UIButtonsBtnYoutube />
+      </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 const { navData, correctUrl } = useNavigation();
+const { toggleNewsletter } = useMenu();
 
 const openMenu = ref(false);
 
@@ -64,6 +79,11 @@ function displayMenu() {
 
 function closeMenu() {
   openMenu.value = false;
+}
+
+function openNewsletter() {
+  toggleNewsletter();
+  closeMenu();
 }
 
 // Lock body scroll when menu is open
@@ -134,6 +154,21 @@ useHead({
     text-decoration: none;
     text-transform: uppercase;
     width: 100%;
+  }
+
+  & .news {
+    display: block;
+    margin: 4rem 0;
+    text-align: center;
+  }
+
+  & .social {
+    display: flex;
+    justify-content: center;
+
+    a {
+      margin: 0 2rem;
+    }
   }
 }
 
