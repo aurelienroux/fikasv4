@@ -10,7 +10,7 @@
             {{ t("footer.copyright") }}
           </p>
         </div>
-        <UIButtonsBtn class="newsletter" btn-style="button--full">
+        <UIButtonsBtn class="newsletter" btn-style="button--full" @click="toggleNewsletter">
           {{ t("newsletter.subscription") }}
         </UIButtonsBtn>
         <div class="social">
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 const { t } = useI18n();
+const { toggleNewsletter } = useMenu();
 </script>
 
 <style lang="scss" scoped>
