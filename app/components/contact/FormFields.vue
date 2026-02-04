@@ -11,30 +11,30 @@
     <input
       class="input-text"
       type="text"
-      name="FirstName:"
+      name="firstname"
       :placeholder="$t('contact.first')"
     />
     <input
       class="input-text"
       type="text"
-      name="LastName:"
+      name="lastname"
       :placeholder="$t('contact.last')"
       required
     />
     <input
       class="input-email"
       type="email"
-      name="Email:"
+      name="email"
       :placeholder="$t('contact.email')"
       required
     />
-    <select name="Subject:">
-      <option disabled selected>{{ $t('contact.selectSubject') }}</option>
-      <option>{{ $t('contact.general') }}</option>
-      <option>{{ $t('contact.volunteer') }}</option>
-      <option>{{ $t('contact.partner') }}</option>
+    <select name="subject">
+      <option disabled selected>{{ $t("contact.selectSubject") }}</option>
+      <option>{{ $t("contact.general") }}</option>
+      <option>{{ $t("contact.volunteer") }}</option>
+      <option>{{ $t("contact.partner") }}</option>
     </select>
-    <textarea name="Message:" rows="12" cols="20" />
+    <textarea name="message" rows="12" cols="20" />
     <input
       class="input-submit"
       type="submit"
@@ -45,11 +45,11 @@
 </template>
 
 <script setup lang="ts">
-const { track } = useAnalytics()
+const { track } = useAnalytics();
 
 const onContact = () => {
-  track('Contact')
-}
+  track("Contact");
+};
 </script>
 
 <style lang="scss" scoped>

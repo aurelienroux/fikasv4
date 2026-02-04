@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form blueprint</title>
+  </head>
+  <body>
+    <form
+      name="contact-form"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact-form" />
+      <input type="hidden" name="bot-field" />
+
+      <p>
+        <label>
+          First name:
+          <input type="text" name="firstname" />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Last name:
+          <input type="text" name="lastname" />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Email:
+          <input type="email" name="email" />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Subject:
+          <select name="subject">
+            <option value="general">General</option>
+            <option value="volunteer">Volunteer</option>
+            <option value="partner">Partner</option>
+          </select>
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Message:
+          <textarea name="message" rows="12" cols="20"></textarea>
+        </label>
+      </p>
+
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
+  </body>
+</html>
