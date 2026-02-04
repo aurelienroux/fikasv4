@@ -12,7 +12,9 @@
     "last": "Nom*",
     "partner": "Partenariat",
     "selectSubject": "Choisissez un sujet",
-    "submit": "Envoyer"
+    "submit": "Envoyer",
+    "success": "Message envoyé avec succès!",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
   },
   "cookies": {
     "accept": "J'accepte",

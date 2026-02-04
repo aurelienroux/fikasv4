@@ -7,6 +7,7 @@
       name="newsletter-form"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
+      @submit.prevent="handleSubmit"
     >
       <input type="hidden" name="form-name" value="newsletter-form" />
       <input type="hidden" name="bot-field" />
@@ -15,6 +16,7 @@
         type="text"
         name="firstname"
         :placeholder="$t('contact.first')"
+        :disabled="isSubmitting"
       />
       <input
         class="input-text"
@@ -22,6 +24,7 @@
         name="lastname"
         :placeholder="$t('contact.last')"
         required
+        :disabled="isSubmitting"
       />
       <input
         class="input-email"
@@ -29,12 +32,13 @@
         name="email"
         :placeholder="$t('contact.email')"
         required
+        :disabled="isSubmitting"
       />
       <input
         class="input-submit"
         type="submit"
-        :value="$t('contact.submit')"
-        @click="onRegister"
+        :value="submitButtonText"
+        :disabled="isSubmitting"
       />
     </form>
 
@@ -45,15 +49,49 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
 const { newsletterOpen, toggleNewsletter } = useMenu();
 const { track } = useAnalytics();
+
+const isSubmitting = ref(false);
+const submitStatus = ref<'idle' | 'success' | 'error'>('idle');
+
+const submitButtonText = computed(() => {
+  if (isSubmitting.value) return '...';
+  if (submitStatus.value === 'success') return '✓';
+  return t('contact.submit');
+});
 
 const closeNewsletter = () => {
   toggleNewsletter();
 };
 
-const onRegister = () => {
-  track("CompleteRegistration");
+const handleSubmit = async (event: Event) => {
+  const form = event.target as HTMLFormElement;
+  const formData = new FormData(form);
+
+  isSubmitting.value = true;
+  submitStatus.value = 'idle';
+
+  try {
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+    });
+
+    if (!response.ok) throw new Error('Submission failed');
+
+    submitStatus.value = 'success';
+    track('CompleteRegistration');
+    form.reset();
+
+    setTimeout(() => closeNewsletter(), 1500);
+  } catch {
+    submitStatus.value = 'error';
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 </script>
 

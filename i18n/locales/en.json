@@ -12,7 +12,9 @@
     "last": "Last name*",
     "partner": "Partnership",
     "selectSubject": "Select a subject",
-    "submit": "Submit"
+    "submit": "Submit",
+    "success": "Message sent successfully!",
+    "error": "Something went wrong. Please try again."
   },
   "cookies": {
     "accept": "I accept",
