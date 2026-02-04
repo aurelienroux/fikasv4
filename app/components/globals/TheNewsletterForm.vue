@@ -1,7 +1,7 @@
 <template>
   <div class="newsletter" :class="{ 'newsletter--open': newsletterOpen }">
-    <p>{{ $t('newsletter.dontmiss') }}</p>
-    <p>{{ $t('newsletter.subscribe') }}</p>
+    <p>{{ $t("newsletter.dontmiss") }}</p>
+    <p>{{ $t("newsletter.subscribe") }}</p>
     <form
       method="post"
       name="newsletter-form"
@@ -13,20 +13,20 @@
       <input
         class="input-text"
         type="text"
-        name="FirstName:"
+        name="firstname"
         :placeholder="$t('contact.first')"
       />
       <input
         class="input-text"
         type="text"
-        name="LastName:"
+        name="lastname"
         :placeholder="$t('contact.last')"
         required
       />
       <input
         class="input-email"
         type="email"
-        name="Email:"
+        name="email"
         :placeholder="$t('contact.email')"
         required
       />
@@ -45,16 +45,16 @@
 </template>
 
 <script setup lang="ts">
-const { newsletterOpen, toggleNewsletter } = useMenu()
-const { track } = useAnalytics()
+const { newsletterOpen, toggleNewsletter } = useMenu();
+const { track } = useAnalytics();
 
 const closeNewsletter = () => {
-  toggleNewsletter()
-}
+  toggleNewsletter();
+};
 
 const onRegister = () => {
-  track('CompleteRegistration')
-}
+  track("CompleteRegistration");
+};
 </script>
 
 <style lang="scss" scoped>
