@@ -302,10 +302,6 @@ Nuxt uses path-based naming. Always use full path:
 
 2. **i18n locale path**: Files must be in `i18n/locales/` (Nuxt i18n adds `i18n/` prefix to `langDir`)
 
-3. **Navigation links**: Currently hardcoded placeholders in headers - need to connect to Storyblok data
-
-4. **Hydration issues**: Ensure computed properties return consistent values (e.g., URLs should always start with `/`)
-
 ## Assets
 
 - Images: `legacy/assets/images/` → `app/assets/images/`
