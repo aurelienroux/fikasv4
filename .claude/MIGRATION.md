@@ -67,7 +67,8 @@ app/
 ├── composables/
 │   ├── useCookiesConsent.ts         # Cookie consent state management
 │   ├── useNavigation.ts             # Navigation data from Storyblok
-│   └── useMenu.ts                   # Menu/drawer state management
+│   ├── useMenu.ts                   # Menu/drawer state management
+│   └── useAnalytics.ts              # Analytics tracking (stub for FB Pixel)
 ├── storyblok/
 │   ├── Page.vue                     # Container for dynamic components
 │   ├── Layout.vue                   # Layout with decorative elements
@@ -172,6 +173,6 @@ app/
 
 ## Next Steps to Continue Migration
 
-1. **Analytics**: Implement `useAnalytics()` composable for GTM/Pixel tracking
-2. **Fix Facebook Pixel**: Investigate and fix `nuxt-meta-pixel` implementation issues
+1. **Complete Analytics**: `useAnalytics()` composable exists as stub - needs real FB Pixel integration
+2. **Fix Facebook Pixel**: Investigate and fix `nuxt-meta-pixel` implementation issues (blocked by above)
 3. **Testing**: Set up Vitest for unit tests
