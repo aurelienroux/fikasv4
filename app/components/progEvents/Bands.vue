@@ -65,7 +65,9 @@
       </div>
     </div>
 
-    <div v-if="description" class="bands__description" v-html="richtext" />
+    <div v-if="description" class="bands__description">
+      <StoryblokRichText :doc="description" />
+    </div>
   </div>
 </template>
 
@@ -96,9 +98,6 @@ const props = defineProps<{
   description?: any;
 }>();
 
-const richtext = computed(() =>
-  props.description ? renderRichText(props.description) : "",
-);
 </script>
 
 <style lang="scss" scoped>

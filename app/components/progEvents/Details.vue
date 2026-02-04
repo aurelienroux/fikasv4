@@ -4,11 +4,9 @@
       <p class="details__date">{{ formattedDate }}</p>
       <p class="details__time">{{ story?.content?.time }}</p>
       <p class="details__location">{{ story?.content?.location }}</p>
-      <div
-        v-if="story?.content?.prices"
-        class="details__prices"
-        v-html="richtext"
-      />
+      <div v-if="story?.content?.prices" class="details__prices">
+        <StoryblokRichText :doc="story.content.prices" />
+      </div>
       <a
         v-if="story?.content?.tickets?.url"
         class="tickets"
@@ -69,11 +67,6 @@ const formattedDate = computed(() => {
   }).format(date);
 });
 
-const richtext = computed(() =>
-  props.story?.content?.prices
-    ? renderRichText(props.story.content.prices)
-    : "",
-);
 </script>
 
 <style lang="scss" scoped>
