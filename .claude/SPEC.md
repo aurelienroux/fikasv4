@@ -302,6 +302,131 @@ Nuxt uses path-based naming. Always use full path:
 
 2. **i18n locale path**: Files must be in `i18n/locales/` (Nuxt i18n adds `i18n/` prefix to `langDir`)
 
+## Netlify Forms Integration
+
+### The Problem
+
+Netlify detects forms at **build time** by scanning static HTML. With SSR/SPA frameworks like Nuxt, forms are rendered dynamically via JavaScript, so Netlify can't detect them during the build process.
+
+### The Solution: Static HTML Clones
+
+Create a hidden static HTML file with form "blueprints" that Netlify can detect:
+
+**File: `public/netlify-forms.html`**
+
+```html
+<!doctype html>
+<html>
+  <body>
+    <!-- Hidden clone for contact form -->
+    <form
+      name="contact-form"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact-form" />
+      <input type="hidden" name="bot-field" />
+      <!-- All fields must match the Vue component -->
+      <input type="text" name="firstname" />
+      <input type="text" name="lastname" />
+      <input type="email" name="email" />
+      <select name="subject"></select>
+      <textarea name="message"></textarea>
+    </form>
+
+    <!-- Hidden clone for newsletter form -->
+    <form
+      name="newsletter-form"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="newsletter-form" />
+      <input type="hidden" name="bot-field" />
+      <input type="text" name="firstname" />
+      <input type="text" name="lastname" />
+      <input type="email" name="email" />
+    </form>
+  </body>
+</html>
+```
+
+**Key requirements:**
+- `name` attribute must match between static clone and Vue component
+- All field `name` attributes must be identical
+- Include `data-netlify="true"` and honeypot field
+- Use `hidden` attribute so they don't display
+
+### Vue Form Component Pattern
+
+```vue
+<template>
+  <form
+    method="post"
+    name="contact-form"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    @submit.prevent="handleSubmit"
+  >
+    <!-- Hidden fields required by Netlify -->
+    <input type="hidden" name="form-name" value="contact-form" />
+    <input type="hidden" name="bot-field" />
+
+    <!-- Form fields... -->
+    <input type="text" name="firstname" />
+    <!-- ... -->
+  </form>
+</template>
+
+<script setup lang="ts">
+const handleSubmit = async (event: Event) => {
+  const form = event.target as HTMLFormElement
+  const formData = new FormData(form)
+
+  try {
+    // POST to the static HTML file, not the current page
+    const response = await fetch('/netlify-forms.html', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+    })
+
+    if (!response.ok) throw new Error('Submission failed')
+    // Handle success...
+  } catch {
+    // Handle error...
+  }
+}
+</script>
+```
+
+**Critical points:**
+- ✅ Use `@submit.prevent` to prevent default browser submission
+- ✅ POST to `/netlify-forms.html` (the static file), not the current page
+- ✅ Use `application/x-www-form-urlencoded` content type (not `multipart/form-data`)
+- ✅ Convert `FormData` to URL-encoded string with `URLSearchParams`
+- ✅ Include `form-name` hidden field with the form's name value
+
+### Common Mistakes to Avoid
+
+| Mistake | Why it fails |
+|---------|--------------|
+| Missing static HTML clone | Netlify can't detect the form at build time |
+| Field names don't match | Submissions won't have the expected fields |
+| POST to current page | SSR routes may not handle form submission |
+| Wrong Content-Type | Netlify expects URL-encoded data |
+| Missing `form-name` field | Netlify won't know which form was submitted |
+
+### Current Forms
+
+| Form | Static Clone | Vue Component |
+|------|--------------|---------------|
+| Contact | `public/netlify-forms.html` | `app/components/contact/FormFields.vue` |
+| Newsletter | `public/netlify-forms.html` | `app/components/globals/TheNewsletterForm.vue` |
+
 ## Assets
 
 - Images: `legacy/assets/images/` → `app/assets/images/`
