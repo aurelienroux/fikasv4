@@ -39,11 +39,14 @@
       <option>{{ $t("contact.partner") }}</option>
     </select>
     <textarea name="message" rows="12" cols="20" :disabled="isSubmitting" />
-    <p v-if="submitStatus === 'success'" class="form-message form-message--success">
-      {{ $t('contact.success') }}
+    <p
+      v-if="submitStatus === 'success'"
+      class="form-message form-message--success"
+    >
+      {{ $t("contact.success") }}
     </p>
     <p v-if="submitStatus === 'error'" class="form-message form-message--error">
-      {{ $t('contact.error') }}
+      {{ $t("contact.error") }}
     </p>
     <input
       class="input-submit"
@@ -59,11 +62,11 @@ const { t } = useI18n();
 const { track } = useAnalytics();
 
 const isSubmitting = ref(false);
-const submitStatus = ref<'idle' | 'success' | 'error'>('idle');
+const submitStatus = ref<"idle" | "success" | "error">("idle");
 
 const submitButtonText = computed(() => {
-  if (isSubmitting.value) return '...';
-  return t('contact.submit');
+  if (isSubmitting.value) return "...";
+  return t("contact.submit");
 });
 
 const handleSubmit = async (event: Event) => {
@@ -71,22 +74,24 @@ const handleSubmit = async (event: Event) => {
   const formData = new FormData(form);
 
   isSubmitting.value = true;
-  submitStatus.value = 'idle';
+  submitStatus.value = "idle";
 
   try {
-    const response = await fetch('/netlify-forms.html', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+    const response = await fetch("/netlify-forms.html", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(
+        formData as unknown as Record<string, string>,
+      ).toString(),
     });
 
-    if (!response.ok) throw new Error('Submission failed');
+    if (!response.ok) throw new Error("Submission failed");
 
-    submitStatus.value = 'success';
-    track('Contact');
+    submitStatus.value = "success";
+    track("Contact");
     form.reset();
   } catch {
-    submitStatus.value = 'error';
+    submitStatus.value = "error";
   } finally {
     isSubmitting.value = false;
   }
@@ -127,6 +132,8 @@ const handleSubmit = async (event: Event) => {
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 0.4rem;
+    font-family: $font-primary;
+    font-size: 1.3rem;
 
     &--success {
       background-color: rgba(76, 175, 80, 0.1);
