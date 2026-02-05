@@ -11,7 +11,20 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxtjs/i18n",
+    "@nuxt/scripts",
   ],
+  app: {
+    head: {
+      meta: [
+        { name: "facebook-domain-verification", content: "0vnpgf8gu1rit17z825bbr0bs7h7b5" },
+      ],
+    },
+  },
+  runtimeConfig: {
+    public: {
+      metapixelDefaultId: "", // Set via NUXT_PUBLIC_METAPIXEL_DEFAULT_ID
+    },
+  },
   css: ["~/assets/scss/index.scss"],
   vite: {
     css: {
