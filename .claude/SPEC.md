@@ -464,6 +464,85 @@ When you run `pnpm generate`, Nuxt creates static HTML for every pre-rendered ro
 
 The `app/netlify.toml` only contains form handling and header configuration—no routing redirects. Netlify handles Nuxt 4 routing automatically.
 
+## Analytics (Facebook/Meta Pixel)
+
+### Implementation
+
+Uses `@nuxt/scripts` module with `useScriptMetaPixel` composable for GDPR-compliant tracking.
+
+**Key files:**
+- `app/composables/useAnalytics.ts` - Tracking composable
+- `nuxt.config.ts` - Module registration + domain verification meta tag
+
+### Configuration
+
+```typescript
+// nuxt.config.ts
+modules: ['@nuxt/scripts'],
+runtimeConfig: {
+  public: {
+    metapixelDefaultId: "", // Set via NUXT_PUBLIC_METAPIXEL_DEFAULT_ID
+  },
+},
+app: {
+  head: {
+    meta: [
+      { name: "facebook-domain-verification", content: "YOUR_VERIFICATION_CODE" },
+    ],
+  },
+},
+```
+
+### useAnalytics Composable
+
+```typescript
+export const useAnalytics = () => {
+  const config = useRuntimeConfig();
+  const { hasCookieConsent } = useCookiesConsent();
+
+  // Script loads only when hasCookieConsent becomes true (GDPR)
+  const metaPixel = useScriptMetaPixel({
+    id: config.public.metapixelDefaultId,
+    scriptOptions: {
+      trigger: hasCookieConsent,
+    },
+  });
+
+  const track = (event: string) => {
+    metaPixel.proxy.fbq('track', event);
+  };
+
+  return { track };
+};
+```
+
+### Usage in Components
+
+```typescript
+const { track } = useAnalytics();
+
+// On form submission
+track('Contact');           // Contact form
+track('CompleteRegistration'); // Newsletter signup
+track('Donate');            // Donation
+```
+
+### Key Points
+
+- **Consent-gated**: Script only loads after cookie consent via `trigger: hasCookieConsent`
+- **Environment variable**: Pixel ID in `NUXT_PUBLIC_METAPIXEL_DEFAULT_ID` (not hardcoded)
+- **Domain verification**: Meta tag in `app.head.meta` for Facebook Business verification
+- **Proxy access**: Use `metaPixel.proxy.fbq()` not direct destructuring
+
+### Why @nuxt/scripts over nuxt-meta-pixel?
+
+| Feature | nuxt-meta-pixel | @nuxt/scripts |
+|---------|-----------------|---------------|
+| Maintenance | Third-party, outdated | Official Nuxt module |
+| Consent handling | Manual | Built-in trigger system |
+| TypeScript | Partial | Full support |
+| Script optimization | Basic | Performance optimized |
+
 ## Assets
 
 - Images: `legacy/assets/images/` → `app/assets/images/`

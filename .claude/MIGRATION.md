@@ -20,7 +20,7 @@ Tracking what's done and what's left to migrate.
 | i18n | nuxt-i18n | @nuxtjs/i18n v9+ | ✅ Installed |
 | CSS | SCSS | SCSS (sass package) | ✅ Installed |
 | Fonts | - | @nuxtjs/google-fonts | ✅ Installed |
-| FB Pixel | nuxt-facebook-pixel-module | nuxt-meta-pixel | ⚠️ Needs fix |
+| FB Pixel | nuxt-facebook-pixel-module | @nuxt/scripts (`useScriptMetaPixel`) | ✅ Done |
 | Icons | FontAwesome | Custom SVG components | ✅ Done (no FA dependency) |
 | Tests | Jest | Vitest (recommended) | TODO |
 
@@ -31,6 +31,7 @@ Tracking what's done and what's left to migrate.
 3. **Google Fonts**: Karla, Rubik, Covered By Your Grace
 4. **Storyblok**: Configured with `@storyblok/nuxt` (token in `.env`)
 5. **i18n**: Configured with `@nuxtjs/i18n` (FR default, EN secondary)
+6. **Analytics**: Meta Pixel via `@nuxt/scripts` with GDPR consent gating
 
 ## Key Configuration Files
 
@@ -68,7 +69,7 @@ app/
 │   ├── useCookiesConsent.ts         # Cookie consent state management
 │   ├── useNavigation.ts             # Navigation data from Storyblok
 │   ├── useMenu.ts                   # Menu/drawer state management
-│   └── useAnalytics.ts              # Analytics tracking (stub for FB Pixel)
+│   └── useAnalytics.ts              # Meta Pixel tracking (consent-gated)
 ├── storyblok/
 │   ├── Page.vue                     # Container for dynamic components
 │   ├── Layout.vue                   # Layout with decorative elements
@@ -170,9 +171,8 @@ app/
 - **Footer newsletter**: Fixed button to properly open newsletter overlay
 - **VideoPlayback**: Fixed CTA link URL for English locale
 - **Event detail page**: Fixed EN translation (now uses `language` param - see SPEC.md)
+- **Facebook Pixel**: Implemented with `@nuxt/scripts` (replaced broken `nuxt-meta-pixel`)
 
 ## Next Steps to Continue Migration
 
-1. **Complete Analytics**: `useAnalytics()` composable exists as stub - needs real FB Pixel integration
-2. **Fix Facebook Pixel**: Investigate and fix `nuxt-meta-pixel` implementation issues (blocked by above)
-3. **Testing**: Set up Vitest for unit tests
+1. **Testing**: Set up Vitest for unit tests
