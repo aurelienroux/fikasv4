@@ -48,6 +48,7 @@ defineProps<{
     max-width: 60rem;
     position: absolute;
     width: 75%;
+    z-index: -1;
 
     @include for-tablet-portrait-up {
       width: 50%;
