@@ -427,6 +427,43 @@ const handleSubmit = async (event: Event) => {
 | Contact | `public/netlify-forms.html` | `app/components/contact/FormFields.vue` |
 | Newsletter | `public/netlify-forms.html` | `app/components/globals/TheNewsletterForm.vue` |
 
+## Netlify Deployment & Routing
+
+### Why No SPA Fallback Redirect Is Needed
+
+The legacy `netlify.toml` included a typical SPA fallback redirect:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+**Why SPAs need this pattern:**
+- SPAs have a single `index.html` that bootstraps the JavaScript router
+- Direct URL access (e.g., `/about`) would 404 without this redirect
+- The redirect serves `index.html`, then Vue Router handles the path client-side
+
+**Why Nuxt 4 doesn't need it:**
+
+| Nuxt Behavior | Effect |
+|---------------|--------|
+| Pre-rendered routes | Each page gets its own HTML file (`/about/index.html`) |
+| Nitro auto-generates `/200.html` | Fallback for dynamic routes not pre-rendered |
+| Netlify auto-detects Nuxt | Configures build settings and routing automatically |
+
+When you run `pnpm generate`, Nuxt creates static HTML for every pre-rendered route. Direct URL access works because the actual file exists—no redirect needed.
+
+**When you would still need SPA fallback:**
+- Pure SPA mode (`ssr: false` in `nuxt.config.ts`)
+- No pre-rendering enabled
+- All routing handled client-side only
+
+### Current Configuration
+
+The `app/netlify.toml` only contains form handling and header configuration—no routing redirects. Netlify handles Nuxt 4 routing automatically.
+
 ## Assets
 
 - Images: `legacy/assets/images/` → `app/assets/images/`
