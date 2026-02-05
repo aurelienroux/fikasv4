@@ -6,7 +6,7 @@
       <p class="pinkblock__text">{{ blok.text }}</p>
       <NuxtLink
         v-if="blok.button_text"
-        :to="`/${blok.button_link?.cached_url}`"
+        :to="correctUrl(blok.button_link?.cached_url || '')"
       >
         <UIButtonsBtn btn-style="button--full">{{
           blok.button_text
@@ -17,6 +17,8 @@
 </template>
 
 <script setup lang="ts">
+const { correctUrl } = useNavigation();
+
 interface PinkblockBlok {
   title?: string;
   text?: string;
