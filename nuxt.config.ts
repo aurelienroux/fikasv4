@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
+      title: "Fikas Festival",
       meta: [
         { name: "facebook-domain-verification", content: "0vnpgf8gu1rit17z825bbr0bs7h7b5" },
       ],
