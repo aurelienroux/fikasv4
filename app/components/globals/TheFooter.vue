@@ -6,11 +6,15 @@
         <div>
           <UILogosLogoFooter class="logo" />
           <p>
-            &copy; FIKA(S) {{ new Date().getFullYear() }} |
+            &copy; FIKA(S) v4 {{ new Date().getFullYear() }} |
             {{ t("footer.copyright") }}
           </p>
         </div>
-        <UIButtonsBtn class="newsletter" btn-style="button--full" @click="toggleNewsletter">
+        <UIButtonsBtn
+          class="newsletter"
+          btn-style="button--full"
+          @click="toggleNewsletter"
+        >
           {{ t("newsletter.subscription") }}
         </UIButtonsBtn>
         <div class="social">
