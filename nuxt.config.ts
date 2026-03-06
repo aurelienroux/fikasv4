@@ -17,7 +17,14 @@ export default defineNuxtConfig({
     head: {
       title: "Fikas Festival",
       meta: [
-        { name: "facebook-domain-verification", content: "0vnpgf8gu1rit17z825bbr0bs7h7b5" },
+        {
+          name: "facebook-domain-verification",
+          content: "0vnpgf8gu1rit17z825bbr0bs7h7b5",
+        },
+        {
+          name: "google-site-verification",
+          content: "jwuFhmAHcGsnE4qHFHuV2m-eyYZBgcvjlC7A6qEgRHc",
+        },
       ],
     },
   },
