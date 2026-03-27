@@ -1,7 +1,7 @@
 <template>
   <header class="header-mobile">
     <div class="top">
-      <NuxtLink :to="localePath('/')" @click="closeMenu">
+      <NuxtLink :to="localePath('/')" aria-label="Fikas Festival - Accueil" @click="closeMenu">
         <UILogosLogo />
       </NuxtLink>
       <UIIconsIconMenu :icon-style="openMenu" @click="displayMenu" />
