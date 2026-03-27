@@ -5,6 +5,7 @@
     href="https://www.instagram.com/fikasfest_montreal/?hl=fr-ca"
     target="_blank"
     rel="noopener noreferrer"
+    aria-label="Instagram"
   >
     <svg viewBox="0 0 40 40">
       <g>

@@ -5,6 +5,7 @@
     href="https://www.youtube.com/channel/UClZRpUy_me2li9HSYUw1HnQ"
     target="_blank"
     rel="noopener noreferrer"
+    aria-label="YouTube"
   >
     <svg viewBox="0 0 40 40">
       <g>

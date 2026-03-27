@@ -5,6 +5,7 @@
     href="https://www.facebook.com/fikasfest/"
     target="_blank"
     rel="noopener noreferrer"
+    aria-label="Facebook"
   >
     <svg viewBox="0 0 40 40">
       <path

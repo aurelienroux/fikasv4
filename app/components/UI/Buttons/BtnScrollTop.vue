@@ -1,7 +1,7 @@
 <template>
-  <div class="scroll-top" @click="scrollToTop">
+  <button class="scroll-top" aria-label="Retour en haut" @click="scrollToTop">
     <IconVideoScroll />
-  </div>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +20,8 @@ function scrollToTop() {
 .scroll-top {
   align-items: center;
   background-color: $perrywinkle;
+  border: none;
+  padding: 0;
   border-radius: 50%;
   cursor: pointer;
   display: inline-flex;
