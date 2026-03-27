@@ -15,6 +15,7 @@
         class="input-text"
         type="text"
         name="firstname"
+        :aria-label="$t('contact.first')"
         :placeholder="$t('contact.first')"
         :disabled="isSubmitting"
       />
@@ -22,6 +23,7 @@
         class="input-text"
         type="text"
         name="lastname"
+        :aria-label="$t('contact.last')"
         :placeholder="$t('contact.last')"
         required
         :disabled="isSubmitting"
@@ -30,6 +32,7 @@
         class="input-email"
         type="email"
         name="email"
+        :aria-label="$t('contact.email')"
         :placeholder="$t('contact.email')"
         required
         :disabled="isSubmitting"
@@ -42,7 +45,7 @@
       />
     </form>
 
-    <button @click="closeNewsletter">
+    <button aria-label="Fermer" @click="closeNewsletter">
       <UIIconsIconClose />
     </button>
   </div>
