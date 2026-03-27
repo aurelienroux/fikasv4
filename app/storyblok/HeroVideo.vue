@@ -67,15 +67,15 @@ const mobileActivated = ref(false)
 const desktopActivated = ref(false)
 
 const thumbnailUrl = computed(() =>
-  `https://img.youtube.com/vi/${props.blok.video_id}/maxresdefault.jpg`
+  `https://i.ytimg.com/vi/${props.blok.video_id}/maxresdefault.jpg`
 )
 
 const videoLinkMobile = computed(() =>
-  `https://www.youtube.com/embed/${props.blok.video_id}?showinfo=0&autoplay=1&mute=1&modestbranding=1&controls=1&loop=1&playlist=${props.blok.video_id}`
+  `https://www.youtube-nocookie.com/embed/${props.blok.video_id}?showinfo=0&autoplay=1&mute=1&modestbranding=1&controls=1&loop=1&playlist=${props.blok.video_id}`
 )
 
 const videoLinkDesktop = computed(() =>
-  `https://www.youtube.com/embed/${props.blok.video_id}?showinfo=0&autoplay=1&mute=1&modestbranding=1&controls=0&loop=1&playlist=${props.blok.video_id}`
+  `https://www.youtube-nocookie.com/embed/${props.blok.video_id}?showinfo=0&autoplay=1&mute=1&modestbranding=1&controls=0&loop=1&playlist=${props.blok.video_id}`
 )
 
 onMounted(() => {

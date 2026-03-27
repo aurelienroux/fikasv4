@@ -42,7 +42,7 @@ const props = defineProps<{
 
 const videoLink = computed(
   () =>
-    `https://www.youtube.com/embed/${props.blok.video_id}?showinfo=0&autoplay=0&mute=0&modestbranding=1&controls=1&loop=0`,
+    `https://www.youtube-nocookie.com/embed/${props.blok.video_id}?showinfo=0&autoplay=0&mute=0&modestbranding=1&controls=1&loop=0`,
 );
 </script>
 

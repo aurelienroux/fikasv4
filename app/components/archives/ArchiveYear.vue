@@ -38,7 +38,7 @@
         class="archive-year__video"
         width="640"
         height="388"
-        :src="`https://www.youtube.com/embed/${video.video_link}?showinfo=0&autoplay=0&mute=0&modestbranding=1&controls=1&loop=0`"
+        :src="`https://www.youtube-nocookie.com/embed/${video.video_link}?showinfo=0&autoplay=0&mute=0&modestbranding=1&controls=1&loop=0`"
         frameborder="0"
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
