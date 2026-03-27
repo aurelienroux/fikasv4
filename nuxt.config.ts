@@ -18,9 +18,6 @@ export default defineNuxtConfig({
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
       title: "Fikas Festival",
-      htmlAttrs: {
-        lang: "fr",
-      },
       meta: [
         {
           name: "description",
@@ -61,6 +58,7 @@ export default defineNuxtConfig({
     },
   },
   googleFonts: {
+    display: "swap",
     families: {
       Karla: [400, 700],
       Rubik: [400, 700],
