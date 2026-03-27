@@ -1,6 +1,6 @@
 <template>
   <div v-editable="blok" class="avatar">
-    <img class="avatar__image" :src="resizedImageUrl" :alt="blok.image?.alt" />
+    <img class="avatar__image" :src="resizedImageUrl" :alt="blok.image?.alt" loading="lazy" />
     <p class="avatar__name">{{ blok.name }}</p>
     <p class="avatar__role">{{ blok.role }}</p>
     <p class="avatar__work">{{ blok.work }}</p>

@@ -27,6 +27,7 @@
         :key="indexPhoto"
         :src="resizeImg(photo.image.filename, 600)"
         :alt="photo.image.alt"
+        loading="lazy"
         @click="openLightBox(photo)"
       />
     </div>

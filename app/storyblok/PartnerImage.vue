@@ -4,6 +4,7 @@
       class="partner-image__image"
       :src="resizedImageUrl"
       :alt="blok.image?.alt"
+      loading="lazy"
     />
   </a>
 </template>

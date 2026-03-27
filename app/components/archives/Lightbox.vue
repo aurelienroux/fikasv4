@@ -8,6 +8,7 @@
         class="lightbox__image"
         :src="resizeImg(image.image.filename, 1000)"
         :alt="image.image.alt"
+        loading="lazy"
       />
       <p class="lightbox__credits">
         {{ t('archives.credits') }} - {{ image.credits }}

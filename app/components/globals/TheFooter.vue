@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <img src="~/assets/images/footer-montagnes.png" alt="fikas mountains" />
+    <img src="~/assets/images/footer-montagnes.png" alt="fikas mountains" loading="lazy" />
     <div class="container">
       <div class="wrapper">
         <div>

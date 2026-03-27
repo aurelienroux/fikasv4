@@ -9,6 +9,7 @@
       class="donation__img"
       :src="resizeImg(blok.image.filename, 600)"
       :alt="blok.image.filename"
+      loading="lazy"
     />
     <div>
       <a

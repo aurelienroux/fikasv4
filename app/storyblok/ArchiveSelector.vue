@@ -10,6 +10,7 @@
           class="archive__image"
           :src="resizeImg(selectedYearImage.filename, 200)"
           :alt="selectedYearImage.alt"
+          loading="lazy"
         />
         <div class="archive__buttons">
           <button
