@@ -24,6 +24,7 @@
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; loop"
         allowfullscreen
+        title="Vidéo Fikas Festival"
       />
       <!-- Desktop: thumbnail then auto-swap after load -->
       <img
@@ -41,11 +42,12 @@
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; loop"
         allowfullscreen
+        title="Vidéo Fikas Festival"
       />
     </div>
     <div class="overlay">
       <h1 class="seo-title">{{ blok.title }}</h1>
-      <a href="#layout">
+      <a href="#layout" aria-label="Défiler vers le contenu">
         <UIIconsIconVideoScroll class="video-scroll" />
       </a>
     </div>

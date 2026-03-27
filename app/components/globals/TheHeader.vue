@@ -1,7 +1,7 @@
 <template>
   <header class="header" :class="{ full: !windowTop }">
     <div class="header-container">
-      <NuxtLink class="logo" :to="localePath('/')" @click="closeMenu">
+      <NuxtLink class="logo" :to="localePath('/')" aria-label="Fikas Festival - Accueil" @click="closeMenu">
         <UILogosLogo />
       </NuxtLink>
 
