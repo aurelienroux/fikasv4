@@ -12,7 +12,11 @@ export default defineNuxtConfig({
     ],
     "@nuxtjs/i18n",
     "@nuxt/scripts",
+    "@nuxtjs/sitemap",
   ],
+  site: {
+    url: "https://fikasfest.com",
+  },
   app: {
     head: {
       charset: "utf-8",

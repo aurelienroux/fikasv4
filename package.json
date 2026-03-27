@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/scripts": "0.13.2",
     "@nuxtjs/i18n": "10.2.1",
+    "@nuxtjs/sitemap": "^8.0.8",
     "@storyblok/nuxt": "9.0.0",
     "nuxt": "4.3.0",
     "vue": "3.5.27",

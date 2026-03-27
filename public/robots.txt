@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://fikasfest.com/sitemap_index.xml
