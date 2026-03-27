@@ -2,7 +2,9 @@
   <div>
     <GlobalsTheHeaderMobile />
     <GlobalsTheHeader />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <GlobalsTheFooter />
     <GlobalsTheNewsletterForm />
   </div>
