@@ -7,7 +7,7 @@
     <img
       v-if="blok.image?.filename"
       class="donation__img"
-      :src="resizeImg(blok.image.filename)"
+      :src="resizeImg(blok.image.filename, 600)"
       :alt="blok.image.filename"
     />
     <div>
@@ -35,12 +35,7 @@ defineProps<{
   }
 }>()
 
-const resizeImg = (originalUrl: string): string => {
-  return originalUrl.replace(
-    'https://a.storyblok.com',
-    'https://img2.storyblok.com/600x0'
-  )
-}
+const { resizeImg } = useStoryblokImage()
 
 const onDonate = () => {
   const { $fbq } = useNuxtApp()

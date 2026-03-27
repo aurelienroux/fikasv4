@@ -6,7 +6,7 @@
     <div class="container">
       <img
         class="lightbox__image"
-        :src="resizeImg(image.image.filename)"
+        :src="resizeImg(image.image.filename, 1000)"
         :alt="image.image.alt"
       />
       <p class="lightbox__credits">
@@ -30,12 +30,7 @@ const emit = defineEmits<{
   closeLightbox: []
 }>()
 
-const resizeImg = (originalUrl: string): string => {
-  return originalUrl.replace(
-    'https://a.storyblok.com',
-    'https://img2.storyblok.com/1000x0'
-  )
-}
+const { resizeImg } = useStoryblokImage()
 </script>
 
 <style lang="scss" scoped>

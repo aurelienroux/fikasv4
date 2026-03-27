@@ -10,6 +10,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+const { resizeImg } = useStoryblokImage()
+
 interface AvatarBlok {
   image?: { filename: string; alt?: string }
   name?: string
@@ -21,10 +23,7 @@ const props = defineProps<{ blok: AvatarBlok }>()
 
 const resizedImageUrl = computed(() => {
   if (!props.blok.image?.filename) return ''
-  return props.blok.image.filename.replace(
-    'https://a.storyblok.com',
-    'https://img2.storyblok.com/250x0'
-  )
+  return resizeImg(props.blok.image.filename, 250)
 })
 </script>
 

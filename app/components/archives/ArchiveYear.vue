@@ -25,7 +25,7 @@
       <img
         v-for="(photo, indexPhoto) in data.photos"
         :key="indexPhoto"
-        :src="resizeImg(photo.image.filename)"
+        :src="resizeImg(photo.image.filename, 600)"
         :alt="photo.image.alt"
         @click="openLightBox(photo)"
       />
@@ -96,12 +96,7 @@ const switchMedia = (media: 'photos' | 'videos' | 'prog') => {
   showProg.value = media === 'prog'
 }
 
-const resizeImg = (originalUrl: string): string => {
-  return originalUrl.replace(
-    'https://a.storyblok.com',
-    'https://img2.storyblok.com/600x0'
-  )
-}
+const { resizeImg } = useStoryblokImage()
 
 const openLightBox = (photoData: Photo) => {
   showLightbox.value = true

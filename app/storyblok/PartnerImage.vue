@@ -11,6 +11,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+const { resizeImg } = useStoryblokImage()
+
 interface PartnerImageBlok {
   image?: { filename: string; alt?: string }
   link?: { url: string }
@@ -20,10 +22,7 @@ const props = defineProps<{ blok: PartnerImageBlok }>()
 
 const resizedImageUrl = computed(() => {
   if (!props.blok.image?.filename) return ''
-  return props.blok.image.filename.replace(
-    'https://a.storyblok.com',
-    'https://img2.storyblok.com/300x0'
-  )
+  return resizeImg(props.blok.image.filename, 300)
 })
 </script>
 

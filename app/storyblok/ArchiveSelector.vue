@@ -8,7 +8,7 @@
       <div class="archive__container">
         <img
           class="archive__image"
-          :src="resizeImg(selectedYearImage.filename)"
+          :src="resizeImg(selectedYearImage.filename, 200)"
           :alt="selectedYearImage.alt"
         />
         <div class="archive__buttons">
@@ -58,12 +58,7 @@ const selectYear = (year: string, yearImage: YearImage) => {
   selectedYearImage.value = yearImage
 }
 
-const resizeImg = (originalUrl: string): string => {
-  return originalUrl.replace(
-    'https://a.storyblok.com',
-    'https://img2.storyblok.com/200x0'
-  )
-}
+const { resizeImg } = useStoryblokImage()
 </script>
 
 <style lang="scss" scoped>
