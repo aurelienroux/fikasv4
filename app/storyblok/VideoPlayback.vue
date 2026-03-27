@@ -13,6 +13,7 @@
         frameborder="0"
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
+        loading="lazy"
       />
       <div class="player__bg"></div>
     </div>
