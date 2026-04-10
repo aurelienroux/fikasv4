@@ -26,7 +26,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Fikas Festival - Festival de musique et de culture en Ardèche",
+            "Fikas Festival - Festival de musique et de culture scandinave à Montréal",
         },
         {
           name: "facebook-domain-verification",
