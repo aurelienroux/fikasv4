@@ -1,6 +1,10 @@
 <template>
   <footer class="footer">
-    <img src="~/assets/images/footer-montagnes.png" alt="fikas mountains" loading="lazy" />
+    <img
+      src="~/assets/images/footer-montagnes.png"
+      alt="fikas mountains"
+      loading="lazy"
+    />
     <div class="container">
       <div class="wrapper">
         <div>
@@ -8,6 +12,12 @@
           <p>
             &copy; FIKA(S) v4 {{ new Date().getFullYear() }} |
             {{ t("footer.copyright") }}
+          </p>
+          <p class="credit">
+            {{ t("footer.credit") }}
+            <a href="http://www.alventech.fr/" target="_blank" rel="noopener"
+              >Alven Tech</a
+            >
           </p>
         </div>
         <UIButtonsBtn
@@ -62,6 +72,15 @@ const { toggleNewsletter } = useMenu();
         justify-content: space-between;
         max-width: 120rem;
         text-align: left;
+      }
+    }
+
+    .credit {
+      margin-top: 0.5rem;
+
+      a {
+        color: $white;
+        text-decoration: underline;
       }
     }
 

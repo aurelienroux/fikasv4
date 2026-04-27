@@ -24,7 +24,8 @@
     "archives": "See archives"
   },
   "footer": {
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+    "credit": "Website made by"
   },
   "programmation": {
     "tickets": "Tickets",
